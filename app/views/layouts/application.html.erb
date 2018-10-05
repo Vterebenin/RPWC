@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rpwc</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+  </head>
+
+  <body>
+
+      <%= render 'shared/header' %>
+      <section class="b-main-content-wrapper">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+               <%= yield %>
+            </div>
+          </div>
+        </div>
+      </section>
+      <%= render 'shared/footer' %>
+   
+    <%= javascript_include_tag 'application' %>
+  </body>
+</html>

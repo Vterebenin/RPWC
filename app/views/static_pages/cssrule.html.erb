@@ -1,0 +1,56 @@
+<h1>CSS RULE</h1>
+<pre>
+.class {
+
+    /*- отступы -*/
+    padding: 0;
+    margin: 0;
+    border: 1px solid #000;
+    border-radius: 0;
+
+    /*- box model -*/
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    visibility: hidden;
+
+    -webkit-flex: none;
+    flex: none;
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
+
+    /*- позиция -*/
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 999;
+    
+    /*- декорация -*/
+    background-color: #fff;
+    opacity: .75;
+
+    /*- типографика -*/
+    font-size: 14px;
+    font-weight: bold;
+    font-family: "Arial", sans-serif /* бязательно указывать fallback для семейств*/;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    color: #000;
+
+    /*- трансформации -*/
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    transform: rotate(45deg);
+
+    /*- анимации -*/
+    -webkit-transition: opacity .3s linear;
+    -o-transition: opacity .3s linear;
+    transition: opacity .3s linear;
+
+    /*- etc -*/
+    cursor: pointer;
+}	
+</pre>
