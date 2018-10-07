@@ -7,6 +7,8 @@
           <h5 class="card-title"><%= link_to resource.title, resource.link %></h5>
           <p class="card-text"><%= resource.description %></p>
           <a href="<%= resource.link %>" class="btn btn-primary"><i class="fas fa-fire"></i> Погнали!</a>
+          <span id="<%= resource.title %>" style="display: none;"><%= resource.link %></span>
+          <button onClick="copyToClipboard('#<%= resource.title %>')" class="btn btn-success">Скопировать</button>
           <% if admin_signed_in? %>
             <div class="resources__adminlinks">
               <%= link_to 'Show', resource, class: "btn btn-primary" %>
