@@ -4,7 +4,11 @@ class Resource < ApplicationRecord
 
 	def self.search(search)
 	  if search
-	    where('title LIKE ?', "%#{search}%")
+			if Rails.env.development?
+		    where("LOWER(title) LIKE ?", "%#{search.downcase}%")
+		  else
+		    where("LOWER(title) ILIKE ?", "%#{search}%")
+		  end 
 	  else
 	    unscoped
 	  end
