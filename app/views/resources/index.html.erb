@@ -3,35 +3,18 @@
 <h1>Resources</h1>
 <h1><%= @admin.email %></h1>
 <% Category.all.each do |c| %>
-                <li class="<%= 'active' if params[:category] == c.category %>">
-                  <%= link_to c.category, resources_path(category: c.category), class: "link" %>
-                </li>
-              <% end %>
+  <li class="<%= 'active' if params[:category] == c.category %>">
+    <%= link_to c.category, resources_path(category: c.category), class: "link" %>
+  </li>
+<% end %>
 <h1 class="current-category"><%= params[:category] %></h1>
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Link</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @resources.each do |resource| %>
-      <tr>
-        <td><%= resource.title %></td>
-        <td><%= resource.description %></td>
-        <td><%= resource.link %></td>
-        <td><%= link_to 'Show', resource %></td>
-        <td><%= link_to 'Edit', edit_resource_path(resource) %></td>
-        <td><%= link_to 'Destroy', resource, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<%= form_tag resources_path, :method => 'get', :id => "resources_search" do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+  <div id="resources"><%= render 'resources' %></div>
+<% end %>
 <br>
-
 <%= link_to 'New Resource', new_resource_path %>

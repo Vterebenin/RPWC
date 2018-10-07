@@ -41,6 +41,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap-sass'
 gem 'simple_form'
 gem 'ckeditor'
+gem 'will_paginate'
 gem 'jquery-rails'
 gem 'carrierwave', '~> 1.0'
 gem 'devise'

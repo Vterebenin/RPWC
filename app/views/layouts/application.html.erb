@@ -4,7 +4,7 @@
     <title>Rpwc</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    
+
     <%= stylesheet_link_tag 'application', media: 'all' %>
   </head>
 
@@ -21,7 +21,7 @@
         </div>
       </section>
       <%= render 'shared/footer' %>
-   
-    <%= javascript_include_tag 'application' %>
+
+      <%= javascript_include_tag 'application','jquery', 'data-turbolinks-track' => true  %>
   </body>
 </html>

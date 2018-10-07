@@ -7,7 +7,7 @@ class ResourcesController < ApplicationController
     @admin = current_admin
     @categories = Category.all.map { |c| [c.category, c.id] }
     if params[:category].blank?
-      @resources = Resource.all.order("created_at DESC")
+      @resources = Resource.search(params[:search]).order("created_at DESC").paginate(:per_page => 8, :page => params[:page])
     else
       filter_categories
     end
@@ -16,6 +16,10 @@ class ResourcesController < ApplicationController
   # GET /resources/1
   # GET /resources/1.json
   def show
+  end
+  def select_resources
+    @resources = Resource.all
+    render "resources", :resources => @resources
   end
 
   # GET /resources/new
@@ -83,6 +87,6 @@ class ResourcesController < ApplicationController
 
     def filter_categories
       @category_id = Category.find_by(category: params[:category]).id
-      @resources = Resource.where(category_id: @category_id).order("created_at DESC")
+      @resources = Resource.where(category_id: @category_id).order("created_at DESC").paginate(:per_page => 8, :page => params[:page])
     end
 end
