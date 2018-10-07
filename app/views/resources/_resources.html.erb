@@ -1,14 +1,14 @@
 <div class="b-resources">
   <div class="row">
-     <% @resources.each do |resource| %>
+     <% @resources.each_with_index do |resource, i| %>
     <div class="resources__card col-lg-4 col-md-6 col-sm-12">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title"><%= link_to resource.title, resource.link %></h5>
           <p class="card-text"><%= resource.description %></p>
           <a href="<%= resource.link %>" class="btn btn-primary"><i class="fas fa-fire"></i> Погнали!</a>
-          <span id="<%= resource.title %>" style="display: none;"><%= resource.link %></span>
-          <button onClick="copyToClipboard('#<%= resource.title %>')" class="btn btn-success">Скопировать</button>
+          <span id="resource<%= i %>" style="display: none;"><%= resource.link %></span>
+          <button onClick="copyToClipboard('#resource<%= i %>')" class="btn btn-success">Скопировать</button>
           <% if admin_signed_in? %>
             <div class="resources__adminlinks">
               <%= link_to 'Show', resource, class: "btn btn-primary" %>
