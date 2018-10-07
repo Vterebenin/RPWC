@@ -1,11 +1,19 @@
 <p id="notice"><%= notice %></p>
+<% if @resources.empty? %>
+	<h2>К сожалению, ресурсов с таким названием сейчас нет.</h2>
 
-<h1>Ресурсы</h1>
-<% if !params[:category].nil? %>
-<h2 class="current-category">Категория: <%= params[:category] %></h2>
-<% end %>
-<div id="resources"><%= render 'resources' %></div>
-<br>
-<% if admin_signed_in? %>
-	<%= link_to 'Добавить ресурс', new_resource_path, class: "btn btn-info" %>
+	<% if admin_signed_in? %>
+		<h2>Но вы можете:</h2>
+		<%= link_to 'Добавить ресурс', new_resource_path, class: "btn btn-info" %>
+	<% end %>
+<% else %>
+	<h1>Ресурсы</h1>
+	<% if !params[:category].nil? %>
+	<h2 class="current-category">Категория: <%= params[:category] %></h2>
+	<% end %>
+	<div id="resources"><%= render 'resources' %></div>
+	<br>
+	<% if admin_signed_in? %>
+		<%= link_to 'Добавить ресурс', new_resource_path, class: "btn btn-info" %>
+	<% end %>
 <% end %>
