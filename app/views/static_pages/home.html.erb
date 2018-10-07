@@ -1,13 +1,13 @@
 <% if admin_signed_in? %>
 
-	<h1>О, вебканапист! кыш седова!</h1>
-	<%= link_to 'Настройки профиля', edit_admin_registration_path %>
-	<%= link_to 'Ресурсы', resources_path %>
-	<%= link_to 'Добавить ресурс', new_resource_path %>
-	<%= link_to 'CSS правило', cssrule_path %>
-	<%= link_to 'Выйти', destroy_admin_session_path, method: :delete %>
+	<h1>Здесь, типа, эээ, самые крутые ресурсы для верстки.</h1>
+	<ul>
+		<li><%= link_to 'Настройки профиля', edit_admin_registration_path %></li>
+		<li><%= link_to 'Ресурсы', resources_path %></li>
+		<li><%= link_to 'Добавить ресурс', new_resource_path %></li>
+		<li><%= link_to 'CSS правило', cssrule_path %></li>
+		<li><%= link_to 'Выйти', destroy_admin_session_path, method: :delete %></li>
+	</ul>
 <% else %>
-		<h1>Это страница для вебканапистов из сопленска, ога! кыш отседова!</h1>
-	<%= link_to 'Войти', admin_session_path %>
-	<%= link_to 'Регистрация', new_admin_registration_path %>
+
 <% end %>

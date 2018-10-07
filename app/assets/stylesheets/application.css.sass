@@ -10,6 +10,8 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require_tree .
+ *= require_self
  */
 @import "bootstrap-sprockets"
 @import "bootstrap"
@@ -38,3 +40,91 @@ footer
 
 .turbolinks-progress-bar
 	display: none
+
+section
+	margin-bottom: 60px
+/* Navbar */
+.b-header
+	background-color: aliceblue
+
+.navbar
+	min-height: 100px
+	margin-bottom: 0
+	background-color: aliceblue !important
+.navbar-brand 
+	width: 200px
+	height: 87px
+	background: image-url("header/logo.png")
+	background-repeat: no-repeat
+	background-position: 0% 100%
+	&:hover
+		background-position: 0% 0%
+
+.form-inline
+	display: block
+	text-align: right
+
+/* resources */
+.b-resources
+	.resources__card
+		margin-bottom: 40px
+	.resources__adminlinks
+		margin-top: 10px
+/* footer */
+.b-footer
+	height: 60px
+	background-color: #dcdcdc
+	padding: 20px
+
+@media (max-width: 1200px) 
+	.resources_search > btn
+		margin-top: 20px
+
+@media (max-width: 991px) 
+	.navbar-header 
+		float: none
+	
+	.navbar-toggle 
+		display: block
+	
+	.navbar-collapse 
+		order: 1
+		border-top: 1px solid transparent
+		box-shadow: inset 0 1px 0 rgba(255,255,255,0.1)
+	
+	.navbar-collapse.collapse 
+		display: none!important
+	
+	.navbar-nav 
+		float: none!important
+		margin: 7.5px -15px
+	
+	.navbar-nav>li 
+		float: none
+	
+	.navbar-nav>li>a 
+		padding-top: 10px
+		padding-bottom: 10px
+	
+	.navbar-text 
+		float: none
+		margin: 15px 0
+	
+	/* since 3.1.0 */
+	.navbar-collapse.collapse.in 
+		display: block!important
+	
+	.collapsing 
+		overflow: hidden!important
+
+	.navbar-toggler
+		order: 1
+
+	.navbar-brand
+		order: -1
+	#resources_search
+		text-align: left
+	
+@media (max-width: 575px) 
+	#resources_search
+		text-align: center

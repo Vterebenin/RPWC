@@ -1,20 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Resources</h1>
-<h1><%= @admin.email %></h1>
-<% Category.all.each do |c| %>
-  <li class="<%= 'active' if params[:category] == c.category %>">
-    <%= link_to c.category, resources_path(category: c.category), class: "link" %>
-  </li>
+<h1>Ресурсы</h1>
+<% if !params[:category].nil? %>
+<h2 class="current-category">Категория: <%= params[:category] %></h2>
 <% end %>
-<h1 class="current-category"><%= params[:category] %></h1>
-
-<%= form_tag resources_path, :method => 'get', :id => "resources_search" do %>
-  <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :name => nil %>
-  </p>
-  <div id="resources"><%= render 'resources' %></div>
-<% end %>
+<div id="resources"><%= render 'resources' %></div>
 <br>
-<%= link_to 'New Resource', new_resource_path %>
+<% if admin_signed_in? %>
+	<%= link_to 'Добавить ресурс', new_resource_path, class: "btn btn-info" %>
+<% end %>

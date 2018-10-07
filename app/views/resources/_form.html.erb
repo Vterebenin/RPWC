@@ -14,21 +14,23 @@
   <div class="field">
     <%= select_tag(:category_id, options_for_select(@categories), :prompt => "Select Category") %>
   </div>
-
+  <br>
   <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.label :title, 'Название. По этому параметру идет поиск.'  %>
+    <%= form.text_field :title, class: 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+    <%= form.label :description, 'Описание. Чем короче, тем лучше.' %>
+    <%= form.text_area :description, class: 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label :link %>
-    <%= form.text_field :link %>
+    <%= form.label :link, 'Абсолютный путь до ресурса.' %>
+    <%= form.text_field :link, class: 'form-control' %>
   </div>
+
+  <br>
 
   <div class="actions">
     <%= form.submit %>

@@ -1,29 +1,66 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+<div class="b-header">
+  
+
+<div class="container">
+ <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="<%= root_path %>"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="<%= home_path %>">Главная </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
+        <a class="nav-link" href="<%= resources_path %>">Ресурсы</a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown link
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Категории
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <% Category.all.each do |c| %>
+            <%= link_to c.category, resources_path(category: c.category), class: "#{ 'active' if params[:category] == c.category } dropdown-item" %>
+          <% end %>
+          <% if admin_signed_in? %>
+            <div class="dropdown-divider"></div>
+            <%= link_to 'Добавить категорию', new_category_path, class: 'dropdown-item' %>
+            <div class="dropdown-divider"></div>
+            <%= link_to 'Поиск по категориям', categories_path, class: 'dropdown-item'  %>
+          <% end %>
         </div>
       </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Полезности
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <%= link_to 'CSS правило', cssrule_path, class: 'dropdown-item' %>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">Че-нибудь еще?</a>
+        </div>
+      </li>
+     <% if current_admin %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Админка
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%= link_to 'Выйти', destroy_admin_session_path, method: :delete, class: "dropdown-item" %>
+          </div>
+        </li>
+      <% end %>
     </ul>
+      <%= form_tag resources_path, :method => 'get', :id => "resources_search", class: "form-inline" do %>
+        <%= text_field_tag :search, params[:search], class: "form-control mr-sm-2" %>
+        <%= submit_tag "Поиск", :name => nil, class: "btn btn-success btn-outline-success my-2 my-sm-0" %>
+      <% end %>
+ 
   </div>
-</nav>
+</nav> 
+</div>
+
+</div>
+
