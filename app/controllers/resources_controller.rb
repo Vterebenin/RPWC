@@ -11,6 +11,7 @@ class ResourcesController < ApplicationController
     else
       filter_categories
     end
+    gon.new_variable = @resources
   end
 
   # GET /resources/1
