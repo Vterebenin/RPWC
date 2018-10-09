@@ -11,7 +11,7 @@ class ResourcesController < ApplicationController
     else
       filter_categories
     end
-    gon.new_variable = @resources
+    gon.new_variable = Resource.all.order("created_at DESC")
   end
 
   # GET /resources/1

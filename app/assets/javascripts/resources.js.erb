@@ -1,5 +1,21 @@
-
+var resourcesobj = gon.new_variable
+console.log(resourcesobj)
+  new Vue({
+    el: "#v-for-customers",
+    data: {
+        search: '',
+        customers: resourcesobj
+    },
+    computed:
+    {
+        filteredCustomers:function()
+        {
+            var self=this;
+            return this.customers.filter(function(cust){return cust.title.toLowerCase().indexOf(self.search.toLowerCase())>=0;});
+        }
+    }
+  })
 
 
 	console.log("<%= @resourcesjs.html_safe? %>");
-console.log(gon.new_variable)
+//console.log(gon.new_variable)

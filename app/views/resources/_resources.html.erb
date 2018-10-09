@@ -22,7 +22,17 @@
     <% end %> 
   </div>
 </div>
-<%= @resourcesjs %>
+<div id="v-for-customers">
+  <input type="text" v-model="search" >   
+  <div class="row profile" v-for="customer in filteredCustomers">
+   <div class="col-md-8"><h4 class="name">{{customer.title}}</h4></div>
+  </div>
+</div>
+
+<script>
+
+    
+</script>
 <%= hidden_field_tag :direction, params[:direction] %>
 <%= hidden_field_tag :sort, params[:sort] %>
 <%= will_paginate @resources %>
