@@ -38,7 +38,11 @@ class ResourcesController < ApplicationController
   # POST /resources.json
   def create
     @resource = current_admin.resources.build(resource_params)
-    @resource.category_id = params[:category_id]
+    if params[:category_id].empty? 
+      @resource.category_id = 1
+    else
+      @resource.category_id = params[:category_id]
+    end
     respond_to do |format|
       if @resource.save
         format.html { redirect_to @resource, notice: 'Resource was successfully created.' }
@@ -53,7 +57,11 @@ class ResourcesController < ApplicationController
   # PATCH/PUT /resources/1
   # PATCH/PUT /resources/1.json
   def update
-    @resource.category_id = params[:category_id]
+    if params[:category_id].empty? 
+      @resource.category_id = 1
+    else
+      @resource.category_id = params[:category_id]
+    end
     respond_to do |format|
       if @resource.update(resource_params)
         format.html { redirect_to @resource, notice: 'Resource was successfully updated.' }
