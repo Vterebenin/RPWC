@@ -33,8 +33,8 @@
           <h5 class="card-title"><a :href="resource.link">{{ resource.title }}</a></h5>
           <p class="card-text">{{ resource.description }}</p>
           <a :href="resource.link" class="btn btn-primary"><i class="fas fa-fire"></i> Погнали!</a>
-          <span id="'resource' + > resource.id" style="display: none;">{{ resource.link }}</span>
-          <button onClick="copyToClipboard('#resource' + resource.id)" class="btn btn-success">Скопировать</button>
+          <span :id="'resource' + resource.id + '1'" style="display: none;">{{ resource.link }}</span>
+          <button :id="'resource' + resource.id" v-on:click="copyToClipboard($event)" class="btn btn-success">Скопировать</button>
           <% if admin_signed_in? %>
             <div class="resources__adminlinks">
               <a :href="'resource/' + resource.id" class="btn btn-primary">Show</a>

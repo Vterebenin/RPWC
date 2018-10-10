@@ -12,16 +12,28 @@ new Vue({
             var self = this;
             console.log(input)
             if (input == '') {
-            	$('#resources-rails, .current-category').show();
+                $('#resources-rails, .current-category').show();
                 return this.resources.filter(function(res) {
                     return res.title.toLowerCase().indexOf(self.search.toLowerCase()) >= 0;
                 }).slice(0, 0);
             } else {
-            	$('#resources-rails, .current-category').hide();
+                $('#resources-rails, .current-category').hide();
                 return this.resources.filter(function(res) {
                     return res.title.toLowerCase().indexOf(self.search.toLowerCase()) >= 0;
                 }).slice(0, 8);
             }
+        }
+    },
+    methods: {
+        copyToClipboard: function(event) {
+        	targetId = event.currentTarget.id;
+        	console.log(targetId)
+            var $temp = $("<input>");
+            $("body").append($temp);
+            $temp.val($('#' + targetId + '1').text()).select();
+            document.execCommand("copy");
+            $temp.remove();
+            alert('Адрес успешно скопирован!')
         }
     }
 })
