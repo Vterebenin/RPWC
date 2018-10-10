@@ -1,38 +1,55 @@
-<div class="b-resources">
+<div id="resources-rails" class="b-resources">
   <div class="row">
      <% @resources.each_with_index do |resource, i| %>
-    <div class="resources__card col-lg-4 col-md-6 col-sm-12">
+      <div class="resources__card col-lg-4 col-md-6 col-sm-12">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to resource.title, resource.link %></h5>
+            <p class="card-text"><%= resource.description %></p>
+            <a href="<%= resource.link %>" class="btn btn-primary"><i class="fas fa-fire"></i> Погнали!</a>
+            <span id="resource<%= i %>" style="display: none;"><%= resource.link %></span>
+            <button onClick="copyToClipboard('#resource<%= i %>')" class="btn btn-success">Скопировать</button>
+            <% if admin_signed_in? %>
+              <div class="resources__adminlinks">
+                <%= link_to 'Show', resource, class: "btn btn-primary" %>
+                <%= link_to 'Edit', edit_resource_path(resource), class: "btn btn-primary" %>
+                <%= link_to 'Destroy', resource, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %> 
+  </div>
+</div> 
+
+<div class="b-resources">
+  <div class="row profile">
+
+  <% i = 0 %>
+   <div class="resources__card col-lg-4 col-md-6 col-sm-12" v-for="resource in filteredResources">
+    
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title"><%= link_to resource.title, resource.link %></h5>
-          <p class="card-text"><%= resource.description %></p>
-          <a href="<%= resource.link %>" class="btn btn-primary"><i class="fas fa-fire"></i> Погнали!</a>
-          <span id="resource<%= i %>" style="display: none;"><%= resource.link %></span>
+          <h5 class="card-title"><a :href="resource.link">{{ resource.title }}</a></h5>
+          <p class="card-text">{{ resource.description }}</p>
+          <a :href="resource.link" class="btn btn-primary"><i class="fas fa-fire"></i> Погнали!</a>
+          <span id="resource<%= i %>" style="display: none;">{{ resource.link }}</span>
           <button onClick="copyToClipboard('#resource<%= i %>')" class="btn btn-success">Скопировать</button>
           <% if admin_signed_in? %>
             <div class="resources__adminlinks">
-              <%= link_to 'Show', resource, class: "btn btn-primary" %>
-              <%= link_to 'Edit', edit_resource_path(resource), class: "btn btn-primary" %>
-              <%= link_to 'Destroy', resource, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+              <a :href="'resource/' + resource.id" class="btn btn-primary">Show</a>
+              <a :href="'resource/' + resource.id + '/edit'" class="btn btn-primary">Edit</a>
+              <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" :href="'/resources/' + resource.id" class="btn btn-danger">Destroy</a>
             </div>
           <% end %>
         </div>
       </div>
+      <% i = i + 1 %>
     </div>
-    <% end %> 
+
   </div>
 </div>
-<div id="v-for-resources">
-  <input id="v-search" type="text" v-model="search" >   
-  <div class="row profile" v-for="resource in filteredResources">
-   <div class="col-md-8"><h4 class="name">{{resource.title}}</h4></div>
-  </div>
-</div>
-
-<script>
-
-    
-</script>
 <%= hidden_field_tag :direction, params[:direction] %>
 <%= hidden_field_tag :sort, params[:sort] %>
 <%= will_paginate @resources %>

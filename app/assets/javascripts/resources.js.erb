@@ -8,16 +8,16 @@ new Vue({
     },
     computed: {
         filteredResources: function() {
-            var input = $("#v-search").val();
+            var input = $("#search").val();
             var self = this;
             console.log(input)
             if (input == '') {
-            	$('.b-resources').show();
+            	$('#resources-rails, .current-category').show();
                 return this.resources.filter(function(res) {
                     return res.title.toLowerCase().indexOf(self.search.toLowerCase()) >= 0;
                 }).slice(0, 0);
             } else {
-            	$('.b-resources').hide();
+            	$('#resources-rails, .current-category').hide();
                 return this.resources.filter(function(res) {
                     return res.title.toLowerCase().indexOf(self.search.toLowerCase()) >= 0;
                 }).slice(0, 8);
