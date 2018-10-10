@@ -1,21 +1,31 @@
 var resourcesobj = gon.new_variable
 console.log(resourcesobj)
-  new Vue({
-    el: "#v-for-customers",
+new Vue({
+    el: "#v-for-resources",
     data: {
         search: '',
-        customers: resourcesobj
+        resources: resourcesobj
     },
-    computed:
-    {
-        filteredCustomers:function()
-        {
-            var self=this;
-            return this.customers.filter(function(cust){return cust.title.toLowerCase().indexOf(self.search.toLowerCase())>=0;});
+    computed: {
+        filteredResources: function() {
+            var input = $("#v-search").val();
+            var self = this;
+            console.log(input)
+            if (input == '') {
+            	$('.b-resources').show();
+                return this.resources.filter(function(res) {
+                    return res.title.toLowerCase().indexOf(self.search.toLowerCase()) >= 0;
+                }).slice(0, 0);
+            } else {
+            	$('.b-resources').hide();
+                return this.resources.filter(function(res) {
+                    return res.title.toLowerCase().indexOf(self.search.toLowerCase()) >= 0;
+                }).slice(0, 8);
+            }
         }
     }
-  })
+})
 
 
-	console.log("<%= @resourcesjs.html_safe? %>");
+console.log("<%= @resourcesjs.html_safe? %>");
 //console.log(gon.new_variable)

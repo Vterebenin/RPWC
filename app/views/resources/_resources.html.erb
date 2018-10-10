@@ -22,10 +22,10 @@
     <% end %> 
   </div>
 </div>
-<div id="v-for-customers">
-  <input type="text" v-model="search" >   
-  <div class="row profile" v-for="customer in filteredCustomers">
-   <div class="col-md-8"><h4 class="name">{{customer.title}}</h4></div>
+<div id="v-for-resources">
+  <input id="v-search" type="text" v-model="search" >   
+  <div class="row profile" v-for="resource in filteredResources">
+   <div class="col-md-8"><h4 class="name">{{resource.title}}</h4></div>
   </div>
 </div>
 
